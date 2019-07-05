@@ -3,59 +3,40 @@ import Signup from '../Component/Signup';
 import SignupResturant from '../Component/SignupResturant'
 import Login from '../Component/login'    
 import UserView from '../screens/userView'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-function UserView1() {
-
-return <div>
-
-      <UserView />
-  </div>;
-}
-
-function login1() {
-    return <div><Login /></div>;
-  }
-
-function userSignup1() {
-  return <div><Signup /></div>;
-}
-
-function resturantSignUp1() {
-  return <div>
-<resturantSignUp1 />
-  </div>;
-}
-
+import UserPending from '../Component/UserPending'
+import Inprogress from '../Component/Inprogress'
+import Deliverd from '../Component/Deliverd'
+import DataRendering from '../Component/dataRendering'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import GettingData from '../Component/gettingData'
 function AppRouter() {
     
   return (
-    <Router>
-      <div>
-
-        <Route path='/' component={UserView1} />
-        <Route path="/userSignup1/" component={userSignup1} />
-        <Route path="/resturantSignUp1/" component={SignupResturant} />
-        <Route path="/login1/" component={login1} />
-        
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">UserView</Link>
-            </li>
-            <li>
-              <Link to="/login1">Login</Link>
-            </li>
-            <li>
-              <Link to="/userSignup1/"> User Signup </Link>
-            </li>
-            <li>
-              <Link to="/resturantSignUp1/">Resturant SignUp</Link>
-            </li>
+    <div>
+          <Router>
+               <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <ul className="navbar-nav mr-auto">
+            {/* <li><Link to={'/'} className="nav-link"> Login</Link></li> */}
+            {/* <li><Link to={'/Signup'} className="nav-link"> SignUp</Link></li> */}
+             {/* <li><Link to={'/UserPending'} className="nav-link">pending</Link></li>
+            <li><Link to={'/deliver'} className="nav-link">Deliverd</Link></li>
+            <li><Link to={'/inprogress'} className="nav-link">In Progress</Link></li> */}
+            {/* <li><Link to={'/datarender'} className="nav-link">DATA RENDER</Link></li>  */}
           </ul>
-        </nav>
-</div>
-    </Router>
+          </nav>
+          <hr />
+          <Switch>
+              <Route exact path='/' component={Login} />
+              <Route  path='/Signup' component={Signup} />
+              <Route path='/deliver' component={Deliverd} />
+              <Route path='/inprogress' component={Inprogress} />
+              <Route path='/UserPending' component={UserPending} />
+              <Route path='/datarender' component={DataRendering} />
+              <Route path='/Userview' component={UserView} />
+              
+          </Switch>
+          </Router>
+    </div>
   );
 }
 

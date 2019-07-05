@@ -13,15 +13,29 @@ import DataRendering from './Component/dataRendering';
 import GettingData from './Component/gettingData'
 // import GoogleMaps from './Component/googleMap'
 class App extends Component {
-  state = {  }
+  state = { isLogin:'' }
+
+   
+  
   render() { 
-    console.log("app")
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user){
+        console.log("user"+user)
+  
+      }
+      else{
+  
+        console.log(" no user"+user)
+  
+      }
+    })
+    console.log(this.state.isLogin)
     return ( 
       <div className="App">
-        <UserView />
-<GettingData />
-        {/* <Login /> */}
-        {/* <AppRouter /> */}
+        {/* <UserView /> */}
+ <GettingData />
+        {/* <Login  /> */}
+                                                      {/* <AppRouter /> */}
    {/* <DataRendering /> */}
         {/* <SignupResturant /> */}
         {/* <Signup /> */}

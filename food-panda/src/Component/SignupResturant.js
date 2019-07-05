@@ -8,7 +8,7 @@ class SignupResturant extends Component {
 
   constructor(props){
     super(props);
-    this.path = firebase.database().ref().child('resturant');
+    this.path = firebase.database().ref("data");
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
     this.state = {
@@ -28,11 +28,14 @@ handleChange(e){
 handleSignup(){
     firebase.auth()
     .createUserWithEmailAndPassword(this.state.email, this.state.password)
-    .then((user)=> {
-        this.path.child(`${user.user.uid}`).set({
+    .then((res)=> {
+        this.path.child(`resturants/${res.user.uid}`).set({
             info:{
                 fullName: this.state.fullName,
                 email: this.state.email,
+                country:this.state.country,
+                city:this.state.city,
+                uid:res.user.uid
             }
         })
         console.log("donnnnnnnnnnnne")

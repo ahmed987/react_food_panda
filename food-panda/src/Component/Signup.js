@@ -8,18 +8,19 @@ class Signup extends Component {
 
   constructor(props){
     super(props);
-    this.path = firebase.database().ref().child('users');
+    this.path = firebase.database().ref("data");
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
     this.state = {
         fullName:'',
         email:'',
         gender:'',
-        age:'',
         country:'',
+        Age:'',
         city:'',
         password:'',
         cnfrmPassword:'',
+        
     }
 }
 
@@ -30,20 +31,22 @@ handleChange(e){
 handleSignup(){
     firebase.auth()
     .createUserWithEmailAndPassword(this.state.email, this.state.password)
-    .then((user)=> {
-        this.path.child(`${user.user.uid}`).set({
+    .then((res)=> {
+        this.path.child(`users/${res.user.uid}`).set({
             info:{
                 fullName: this.state.fullName,
                 email: this.state.email,
                 gender:this.state.gender,
-                age:this.setState.age,
+                Age:this.state.Age,
                 country:this.state.country,
-                city:this.state.city
+                city:this.state.city,
+                uid:res.user.uid
             }
         })
+        console.log(`emai l   `+this.state.email+`this . state.password`+this.state.password)
         alert("congo")
-        console.log("donnnnnnnnnnnne")
-        // window.location = '/'
+        console.log("donnnnnnnnnnnne"+res.user.uid)
+      // window.location = '/'
     })
     .catch((error)=> alert(error))
 }
@@ -66,7 +69,7 @@ return (
 </FormGroup>
 
 <FormGroup>
-    <Input onChange={this.handleChange} value = {this.state.age} type="text" name="age" placeholder="age" required/>
+    <Input onChange={this.handleChange} value = {this.state.Age} type="text" name="Age" placeholder="age" required/>
 </FormGroup>
 
 <FormGroup>
@@ -87,7 +90,7 @@ return (
 
 
 <FormGroup className="text-right">
-    <Button onClick={this.handleSignup}>Register</Button>
+    <Button onClick={this.handleSignup} onClick={() => this.props.history.push('/datarender')}>Register</Button>
 </FormGroup>
 
 

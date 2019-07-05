@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import firebase from '../config/firebase'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Card, Button, CardImg, CardTitle, CardText, CardGroup,
     CardSubtitle, CardBody } from 'reactstrap';
-   
+    import UserPending from './UserPending'
+    import Inprogress from './Inprogress'
+    import Deliverd from './Deliverd'
+    
 class DataRendering extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +40,7 @@ class DataRendering extends Component {
     render() {
         console.log(this.state.users);
 
-// let newData=this.state.users;
+// let new  Data=this.state.users;
 // let mapData=newData.map((data)=>{
 //     console.log(data)
 // })
@@ -50,6 +54,7 @@ class DataRendering extends Component {
         }
         return ( 
             <div>
+            
 <CardGroup>
       <Card>
         <CardImg top width="100%" src="https://images.unsplash.com/photo-1460306855393-0410f61241c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap" />
